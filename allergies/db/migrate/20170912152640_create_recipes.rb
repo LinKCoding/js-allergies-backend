@@ -4,8 +4,8 @@ class CreateRecipes < ActiveRecord::Migration[5.1]
       t.string :title
       t.string :url
       t.string :thumbnail
-      t.text :ingredients, array: true, default: []
-
+      t.string :ingredients, array: true, default: []
+      t.integer :recipe_list_id
       t.timestamps
     end
   end
