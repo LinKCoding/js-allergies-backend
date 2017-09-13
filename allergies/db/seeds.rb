@@ -12,19 +12,21 @@
 recipe_file = File.read(File.join(File.dirname(__FILE__), 'full_format_recipes.json'))
 parsed_recipes = JSON.parse(recipe_file)
 
+truncated_recipes = parsed_recipes[0...2000]
+
 
 recipe_list = RecipeList.create()
-until Recipe.all.length == 2000
-  parsed_recipes.each do |recipe|
-    if !recipe.empty?
-      db_recipe = Recipe.new
-      db_recipe.title = recipe["title"]
-      db_recipe.directions = recipe["directions"]
-      db_recipe.ingredients = recipe["ingredients"]
-      db_recipe.ingredients.map { |ingredient| ingredient.delete! '\\'  }
-      db_recipe.directions.map { |direction| direction.delete! '\\'  }
-      db_recipe.recipe_list_id = recipe_list.id
-      db_recipe.save
-    end
+
+truncated_recipes.each do |recipe|
+  if !recipe.empty?
+    db_recipe = Recipe.new
+    db_recipe.title = recipe["title"]
+    db_recipe.directions = recipe["directions"]
+    db_recipe.ingredients = recipe["ingredients"]
+    db_recipe.ingredients.map { |ingredient| ingredient.delete! '\\'  }
+    db_recipe.directions.map { |direction| direction.delete! '\\'  }
+    db_recipe.recipe_list_id = recipe_list.id
+    db_recipe.save
   end
+  puts Recipe.all.length
 end
