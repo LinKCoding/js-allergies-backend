@@ -21,7 +21,7 @@ parsed_recipes.each do |recipe|
     db_recipe.directions = recipe["directions"]
     db_recipe.ingredients = recipe["ingredients"]
     db_recipe.ingredients.map { |ingredient| ingredient.delete! '\\'  }
-    db_recipe.directions.delete! '\\'
+    db_recipe.directions.map { |direction| direction.delete! '\\'  }
     db_recipe.recipe_list_id = recipe_list.id
     db_recipe.save
   end

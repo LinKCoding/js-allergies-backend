@@ -16,14 +16,14 @@ ActiveRecord::Schema.define(version: 20170912152913) do
   enable_extension "plpgsql"
 
   create_table "recipe_lists", force: :cascade do |t|
-    t.text "allergies", default: [], array: true
+    t.string "allergies", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "recipes", force: :cascade do |t|
     t.string "title"
-    t.string "directions"
+    t.string "directions", default: [], array: true
     t.string "ingredients", default: [], array: true
     t.integer "recipe_list_id"
     t.datetime "created_at", null: false
