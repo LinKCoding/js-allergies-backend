@@ -23,8 +23,7 @@ ActiveRecord::Schema.define(version: 20170912152913) do
 
   create_table "recipes", force: :cascade do |t|
     t.string "title"
-    t.string "url"
-    t.string "thumbnail"
+    t.string "directions"
     t.string "ingredients", default: [], array: true
     t.integer "recipe_list_id"
     t.datetime "created_at", null: false

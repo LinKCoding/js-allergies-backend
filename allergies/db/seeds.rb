@@ -5,8 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-file = File.read('/Users/kesean/dev/Javascript/Projects/js-proj/js-allergies-backend/allergies/db/full_format_recipes.json')
-test_list = JSON.parse(file)
+
+# file_path = File.absolute_path('full_format_recipes.json')
+# file = File.read(file_path)
+# test_list = JSON.parse(file)
+recipe_file = File.read(File.join(File.dirname(__FILE__), 'full_format_recipes.json'))
+parsed_recipes = JSON.parse(recipe_file)
 byebug
 
 
