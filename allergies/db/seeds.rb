@@ -14,15 +14,17 @@ parsed_recipes = JSON.parse(recipe_file)
 
 
 recipe_list = RecipeList.create()
-parsed_recipes.each do |recipe|
-  if !recipe.empty?
-    db_recipe = Recipe.new
-    db_recipe.title = recipe["title"]
-    db_recipe.directions = recipe["directions"]
-    db_recipe.ingredients = recipe["ingredients"]
-    db_recipe.ingredients.map { |ingredient| ingredient.delete! '\\'  }
-    db_recipe.directions.map { |direction| direction.delete! '\\'  }
-    db_recipe.recipe_list_id = recipe_list.id
-    db_recipe.save
+until Recipe.all.length == 2000
+  parsed_recipes.each do |recipe|
+    if !recipe.empty?
+      db_recipe = Recipe.new
+      db_recipe.title = recipe["title"]
+      db_recipe.directions = recipe["directions"]
+      db_recipe.ingredients = recipe["ingredients"]
+      db_recipe.ingredients.map { |ingredient| ingredient.delete! '\\'  }
+      db_recipe.directions.map { |direction| direction.delete! '\\'  }
+      db_recipe.recipe_list_id = recipe_list.id
+      db_recipe.save
+    end
   end
 end
