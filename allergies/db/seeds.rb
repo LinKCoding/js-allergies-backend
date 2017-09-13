@@ -5,13 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-recipeList = RecipeList.create()
+file = File.read('/Users/kesean/dev/Javascript/Projects/js-proj/js-allergies-backend/allergies/db/full_format_recipes.json')
+test_list = JSON.parse(file)
+byebug
+
+
+recipe_list = RecipeList.create()
 200.times do
     recipe = Recipe.new
     recipe.title = Faker::Food.dish
     recipe.url = ""
     recipe.thumbnail = ""
-    recipe.recipe_list_id = recipeList.id
+    recipe.recipe_list_id = recipe_list.id
     5.times do
       recipe.ingredients.push(Faker::Food.ingredient)
     end
