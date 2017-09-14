@@ -28,6 +28,6 @@ truncated_recipes.each do |recipe|
     db_recipe.recipe_list_id = recipe_list.id
     db_recipe.save unless db_recipe.ingredients.length == 0 || db_recipe.directions.length == 0
   end
-  puts "Loading...#{{Recipe.all.length}}/2000"
+  puts "Loading...#{Recipe.all.length}/2000"
 end
 puts "Done."
